@@ -14,6 +14,8 @@ public class Oseba {
 		this.email = email;
 		this.ime = ime;
 		this.priimek = priimek;
+		this.spol = "";
+		datumRojstva=new GregorianCalendar();
 		datumVpisa=new GregorianCalendar();
 	}
 	
@@ -21,14 +23,23 @@ public class Oseba {
 		this.email = email;
 		this.ime = ime;
 		this.priimek = priimek;
+		this.spol = "";
+		datumRojstva=new GregorianCalendar();
 		datumVpisa=new GregorianCalendar();
 	}
 
+	public static final String MOSKI="M";
+	public static final String ZENSKA="Z";
+	
 	private String ime;
 
 	private String priimek;
 	
 	private String email;
+	
+	private String spol;
+	
+	private Calendar datumRojstva;
 
 	private Calendar datumVpisa;
 	
@@ -63,11 +74,27 @@ public class Oseba {
 	public void setDatumVpisa(Calendar datumVpisa) {
 		this.datumVpisa = datumVpisa;
 	}
+	
+	public String getSpol() {
+		return spol;
+	}
+
+	public void setSpol(String spol) {
+		this.spol = spol;
+	}
+
+	public Calendar getDatumRojstva() {
+		return datumRojstva;
+	}
+
+	public void setDatumRojstva(Calendar datumRojstva) {
+		this.datumRojstva = datumRojstva;
+	}
 
 	private static SimpleDateFormat sdf=new SimpleDateFormat("dd. MM. yyyy HH:mm:ss");
 	@Override
 	public String toString() {
-		return ime + " " + priimek + " ("+email+"); vpis: "+sdf.format(datumVpisa.getTime());
+		return ime + " " + priimek + ","+spol+" ("+email+"); datum rojstva: "+sdf.format(datumRojstva.getTime())+"; vpis: "+sdf.format(datumVpisa.getTime());
 	}
 	
 }

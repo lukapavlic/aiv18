@@ -24,6 +24,21 @@
 							<td><h:outputText value="#{demo.izbranaOseba.email}"/></td>
 						</tr>
 						<tr>
+							<td>Spol:</td>
+							<td>
+								<h:outputText value="MOŠKI" rendered="#{demo.izbranaOseba.spol eq 'M'}"/>
+								<h:outputText value="ŽENSKA" rendered="#{demo.izbranaOseba.spol eq 'Z'}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>Datum rojstva:</td>
+							<td>
+								<h:outputText value="#{demo.izbranaOseba.datumRojstva.time}">
+									<f:convertDateTime pattern="dd. MM. yyyy" />
+								</h:outputText>
+							</td>
+						</tr>
+						<tr>
 							<td>Vnos:</td>
 							<td>
 								<h:outputText value="#{demo.izbranaOseba.datumVpisa.time}">
