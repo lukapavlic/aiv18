@@ -1,14 +1,9 @@
 package si.um.feri.aiv;
 
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import si.test.EnMaliEjb;
-import si.test.EnMaliEjbLocal;
 
 @ManagedBean(name="demo")
 @SessionScoped
@@ -38,15 +33,7 @@ public class DemoBean {
 		return izbranEmail;
 	}
 
-	@EJB
-	EnMaliEjbLocal ejb;
-	
 	public void dodajOsebo() {
-		
-		System.out.println(
-				ejb.pozdraviMe(novaOseba.getIme())
-		);
-		
 		log.info("JSF BEAN: dodajOsebo");
 		try {
 			dao.shrani(novaOseba);

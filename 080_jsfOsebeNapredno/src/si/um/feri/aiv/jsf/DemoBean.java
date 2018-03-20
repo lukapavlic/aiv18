@@ -2,17 +2,11 @@ package si.um.feri.aiv.jsf;
 
 import java.io.Serializable;
 
-import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.naming.InitialContext;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import si.test.MojeZrnce;
-import si.test.MojeZrnceLocal;
-import si.test.MojeZrnceRemote;
 import si.um.feri.aiv.dao.KontaktDao;
 import si.um.feri.aiv.dao.OsebaDao;
 import si.um.feri.aiv.vao.Kontakt;
@@ -46,13 +40,7 @@ public class DemoBean implements Serializable {
 		}
 	}
 
-	@EJB
-	MojeZrnceRemote mz;
-	
 	public void dodajOsebo() {
-		
-		System.out.println(mz.pozdrav(novaOseba.getIme()));
-		
 		log.info("JSF BEAN: dodajOsebo");
 		try {
 			OsebaDao.getInstance().shrani(novaOseba);
