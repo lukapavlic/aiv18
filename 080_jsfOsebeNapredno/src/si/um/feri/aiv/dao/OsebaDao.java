@@ -17,11 +17,11 @@ import si.um.feri.aiv.vao.Oseba;
 public class OsebaDao extends Dao<Oseba> {
 
 	private OsebaDao() {
-		//jdbc:mysql://localhost:3306/aiv1
-		super("java:jboss/datasources/aiv1",
-				   "create table jsfoseba3(id int auto_increment, ime varchar(255), priimek varchar(255), spol varchar(10), cas timestamp, rojstvo timestamp, primary key (id))");
+		//jdbc:mysql://localhost:3306/aiv
+		super("java:jboss/datasources/aiv",
+				   "create table oseba(id int auto_increment, ime varchar(255), priimek varchar(255), spol varchar(10), cas timestamp, rojstvo timestamp, primary key (id))");
 //		super("java:jboss/datasources/ExampleDS",
-//			   "create table if not exists jsfoseba3(id int auto_increment, ime varchar, priimek varchar, spol varchar, cas timestamp, rojstvo timestamp)");
+//			   "create table if not exists oseba(id int auto_increment, ime varchar, priimek varchar, spol varchar, cas timestamp, rojstvo timestamp)");
 	}
 	
 	private static OsebaDao inst=new OsebaDao();
@@ -34,7 +34,7 @@ public class OsebaDao extends Dao<Oseba> {
 	public Oseba najdi(int id,Connection conn) throws Exception {
 		log.info("Iščem osebo "+id);
 		Oseba ret = null;
-		PreparedStatement ps = conn.prepareStatement("select * from jsfoseba3 where id=?");
+		PreparedStatement ps = conn.prepareStatement("select * from oseba where id=?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
@@ -54,7 +54,7 @@ public class OsebaDao extends Dao<Oseba> {
 		log.info("Shranjujem osebo "+o);
 		if (o==null) return;
 		if (najdi(o.getId()) != null) {
-			PreparedStatement ps = conn.prepareStatement("update jsfoseba3 set ime=? , priimek=? , cas=? , rojstvo = ? , spol = ? where id=?");
+			PreparedStatement ps = conn.prepareStatement("update oseba set ime=? , priimek=? , cas=? , rojstvo = ? , spol = ? where id=?");
 			ps.setString(1, o.getIme());
 			ps.setString(2, o.getPriimek());
 			ps.setTimestamp(3, new Timestamp(o.getDatumVpisa().getTimeInMillis()));
@@ -63,7 +63,7 @@ public class OsebaDao extends Dao<Oseba> {
 			ps.setInt(6, o.getId());
 			ps.executeUpdate();
 		} else {
-			PreparedStatement ps = conn.prepareStatement("insert into jsfoseba3(ime , priimek, cas, rojstvo, spol ) values (?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement("insert into oseba(ime , priimek, cas, rojstvo, spol ) values (?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, o.getIme());
 			ps.setString(2, o.getPriimek());
 			o.setDatumVpisa(new GregorianCalendar());
@@ -85,7 +85,7 @@ public class OsebaDao extends Dao<Oseba> {
 	public List<Oseba> vrniVse(Connection conn) throws Exception {
 		log.info("Vračam vse osebe!");
 		List<Oseba> ret = new ArrayList<Oseba>();
-		ResultSet rs=conn.createStatement().executeQuery("select * from jsfoseba3");
+		ResultSet rs=conn.createStatement().executeQuery("select * from oseba");
 		while (rs.next()) {
 			Oseba o = new Oseba(rs.getString("ime"), rs.getString("priimek"));
 			o.setId(rs.getInt("id"));

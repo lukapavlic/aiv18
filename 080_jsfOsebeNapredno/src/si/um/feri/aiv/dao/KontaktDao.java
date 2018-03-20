@@ -14,11 +14,11 @@ import si.um.feri.aiv.vao.Kontakt;
 public class KontaktDao extends Dao<Kontakt> {
 	
 	private KontaktDao() {
-		//jdbc:mysql://localhost:3306/aiv1
-		super("java:jboss/datasources/aiv1",
-				"create table jsfkontakt3(id int auto_increment, tip varchar(20), email varchar(50), telefon varchar(50), oseba int, primary key (id))");
+		//jdbc:mysql://localhost:3306/aiv
+		super("java:jboss/datasources/aiv",
+				"create table kontakt(id int auto_increment, tip varchar(20), email varchar(50), telefon varchar(50), oseba int, primary key (id))");
 //		super("java:jboss/datasources/ExampleDS",
-//				"create table if not exists jsfkontakt3(id int auto_increment, tip varchar, email varchar, telefon varchar, oseba int)");
+//				"create table if not exists kontakt(id int auto_increment, tip varchar, email varchar, telefon varchar, oseba int)");
 	}
 
 	private static KontaktDao inst=new KontaktDao();
@@ -31,7 +31,7 @@ public class KontaktDao extends Dao<Kontakt> {
 	public Kontakt najdi(int id,Connection conn) throws Exception {
 		log.info("Iščem kontakt "+id);
 		Kontakt ret = null;
-		PreparedStatement ps = conn.prepareStatement("select * from jsfkontakt3 where id=?");
+		PreparedStatement ps = conn.prepareStatement("select * from kontakt where id=?");
 		ps.setInt(1, id);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {
@@ -48,7 +48,7 @@ public class KontaktDao extends Dao<Kontakt> {
 		log.info("Shranjujem kontakt "+o);
 		if (o==null) return;
 		if (najdi(o.getId()) != null) {
-			PreparedStatement ps = conn.prepareStatement("update jsfkontakt3 set tip=? , email=? , telefon = ? , oseba = ? where id=?");
+			PreparedStatement ps = conn.prepareStatement("update kontakt set tip=? , email=? , telefon = ? , oseba = ? where id=?");
 			ps.setString(1, o.getTip());
 			ps.setString(2, o.getEmail());
 			ps.setString(3, o.getTelefon());
@@ -56,7 +56,7 @@ public class KontaktDao extends Dao<Kontakt> {
 			ps.setInt(5, o.getId());
 			ps.executeUpdate();
 		} else {
-			PreparedStatement ps = conn.prepareStatement("insert into jsfkontakt3(tip , email, telefon, oseba ) values (?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = conn.prepareStatement("insert into kontakt(tip , email, telefon, oseba ) values (?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
 			ps.setString(1, o.getTip());
 			ps.setString(2, o.getEmail());
 			ps.setString(3, o.getTelefon());
@@ -78,7 +78,7 @@ public class KontaktDao extends Dao<Kontakt> {
 	public List<Kontakt> vrniVse(int idOsebe, Connection conn) throws Exception {
 		log.info("Iščem kontakte osebe "+idOsebe);
 		List<Kontakt> ret = new ArrayList<>();
-		PreparedStatement ps = conn.prepareStatement("select * from jsfkontakt3 where oseba=?");
+		PreparedStatement ps = conn.prepareStatement("select * from kontakt where oseba=?");
 		ps.setInt(1, idOsebe);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next()) {

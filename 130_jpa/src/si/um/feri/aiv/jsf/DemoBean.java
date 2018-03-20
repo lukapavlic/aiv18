@@ -1,22 +1,26 @@
-package si.um.feri.aiv;
+package si.um.feri.aiv.jsf;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import si.test.EnMaliEjb;
-import si.test.EnMaliEjbLocal;
+import si.um.feri.aiv.ejb.Demo;
+import si.um.feri.aiv.ejb.Osebe;
+import si.um.feri.aiv.vao.Oseba;
 
 @ManagedBean(name="demo")
 @SessionScoped
 public class DemoBean {
 
 	Logger log=LoggerFactory.getLogger(DemoBean.class);
+
+	@EJB
+	private Osebe ejb;
 	
-	private OsebaDao dao=new OsebaDao();
+	@EJB
+	private Demo demoEjb;
 
 	private Oseba novaOseba=new Oseba();
 
@@ -24,11 +28,15 @@ public class DemoBean {
 	
 	private String izbranEmail;
 	
+	public void nekaj() {
+		demoEjb.narediNekaj();
+	}
+	
 	public void setIzbranEmail(String email) {
 		log.info("JSF BEAN: setIzbranEmail");
 		izbranEmail=email;
 		try {
-			izbranaOseba=dao.najdi(email);
+			izbranaOseba=ejb.najdi(email);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,18 +46,10 @@ public class DemoBean {
 		return izbranEmail;
 	}
 
-	@EJB
-	EnMaliEjbLocal ejb;
-	
 	public void dodajOsebo() {
-		
-		System.out.println(
-				ejb.pozdraviMe(novaOseba.getIme())
-		);
-		
 		log.info("JSF BEAN: dodajOsebo");
 		try {
-			dao.shrani(novaOseba);
+			ejb.shrani(novaOseba);
 			novaOseba=new Oseba();
 		} catch (Exception e) {
 			e.printStackTrace();
