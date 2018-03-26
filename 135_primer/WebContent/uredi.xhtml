@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	
+	<ui:composition template="WEB-INF/template/template.xhtml">
+	
+		<ui:define name="content">
+			<f:view>
+			
+				<f:metadata>
+					<f:viewParam name="nov" value="#{treningi.nov}" />
+				</f:metadata>
+			
+				<h:form>
+
+					<table border="0">
+						<tr>
+							<td>Naziv:</td>
+							<td><h:inputText value="#{treningi.izbranTrening.naziv}"/></td>
+						</tr>
+						<tr>
+							<td>Stranka:</td>
+							<td><h:inputText value="#{treningi.izbranTrening.stranka}"/></td>
+						</tr>
+						<tr>
+							<td>Trener:</td>
+							<td><h:inputText value="#{treningi.izbranTrening.trener}"/></td>
+						</tr>
+						<tr>
+							<td>Dni v ciklu:</td>
+							<td><h:inputText value="#{treningi.izbranTrening.dniVCiklu}"/></td>
+						</tr>
+						<tr>
+							<td rowspan="2"><h:commandButton value="V redu" actionListener="#{treningi.shraniIzbranTrening}" action="vse.xhtml"/></td>
+							<td rowspan="2"><h:commandButton value="Prekliči" action="vse.xhtml"/></td>
+						</tr>
+					</table>
+					 
+				</h:form>
+			</f:view>
+		</ui:define>
+		
+	</ui:composition>
+
+</html>
