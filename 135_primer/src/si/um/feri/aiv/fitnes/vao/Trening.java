@@ -72,11 +72,18 @@ public class Trening {
 		this.dniVCiklu = dniVCiklu;
 	}
 	
+	public void setJavaReference(String s) {
+	}
+
+	public String getJavaReference() {
+		return super.toString();
+	}
+	
 	private static SimpleDateFormat sdf=new SimpleDateFormat("dd. MM. yyyy HH:mm:ss");
 
 	@Override
 	public String toString() {
-		return id+": "+naziv + " (" + trener + "; "+stranka+"); vpis: "+sdf.format(ustvarjen.getTime())+"; "+dniVCiklu+" dni na cikel";
+		return id+": "+naziv + " (" + trener + "; "+stranka+"); vpis: "+sdf.format(ustvarjen.getTime())+"; "+dniVCiklu+" dni na cikel ["+super.toString()+"]";
 	}
 	
 }

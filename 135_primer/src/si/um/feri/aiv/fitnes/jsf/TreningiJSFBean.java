@@ -38,6 +38,7 @@ public class TreningiJSFBean implements Serializable {
 	}
 
 	public void shraniIzbranTrening() {
+		System.out.println("shraniIzbranTrening "+ izbranTrening);
 		ejb.shrani(izbranTrening);
 	}
 	

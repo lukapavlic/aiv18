@@ -5,12 +5,16 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import si.um.feri.aiv.fitnes.vao.Trening;
 
 @LocalBean
 @Stateless
 public class TreningiBean {
 
+	Logger log=LoggerFactory.getLogger(TreningiBean.class);
+	
 	@PersistenceContext
 	private EntityManager em;
 	
@@ -20,10 +24,14 @@ public class TreningiBean {
 	}
 	
 	public Trening najdi(long id) {
-		return em.find(Trening.class, id);
+		log.info("Išèem "+id);
+		Trening ret=em.find(Trening.class, id);
+		log.info("Najdem "+ret);
+		return ret;
 	}
 	
 	public void shrani(Trening t) {
+		log.info("Shranjujem "+t);
 		em.persist(t);
 	}
 	
