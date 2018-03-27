@@ -10,41 +10,43 @@
 			<f:view>
 
 				<f:metadata>
-					<f:viewParam name="id" value="#{treningi.treningId}" />
+					<f:viewParam name="id" value="#{pregledtreninga.izbranTreningId}" />
 				</f:metadata>
 
 				<table border="0">
 					<tr>
 						<td>Id:</td>
-						<td><h:outputText value="#{treningi.izbranTrening.id}"/> | <h:outputText value="#{treningi.izbranTrening.javaReference}"/></td>
+						<td><h:outputText value="#{pregledtreninga.izbranTrening.id}"/> | <h:outputText value="#{pregledtreninga.izbranTrening.javaReference}"/></td>
 					</tr>
 					<tr>
 						<td>Naziv:</td>
-						<td><h:outputText value="#{treningi.izbranTrening.naziv}"/></td>
+						<td><h:outputText value="#{pregledtreninga.izbranTrening.naziv}"/></td>
 					</tr>
 					<tr>
 						<td>Stranka:</td>
-						<td><h:outputText value="#{treningi.izbranTrening.stranka}"/></td>
+						<td><h:outputText value="#{pregledtreninga.izbranTrening.stranka}"/></td>
 					</tr>
 					<tr>
 						<td>Trener:</td>
-						<td><h:outputText value="#{treningi.izbranTrening.trener}"/></td>
+						<td><h:outputText value="#{pregledtreninga.izbranTrening.trener}"/></td>
 					</tr>
 					<tr>
 						<td>Dni v ciklu:</td>
-						<td><h:outputText value="#{treningi.izbranTrening.dniVCiklu}"/></td>
+						<td><h:outputText value="#{pregledtreninga.izbranTrening.dniVCiklu}"/></td>
 					</tr>
 					<tr>
 						<td>Vnos:</td>
 						<td>
-							<h:outputText value="#{treningi.izbranTrening.ustvarjen.time}">
+							<h:outputText value="#{pregledtreninga.izbranTrening.ustvarjen.time}">
 								<f:convertDateTime pattern="dd. MM. yyyy HH:mm:ss" />
 							</h:outputText>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<h:link value="Uredi" outcome="uredi" />
+							<h:link value="uredi" outcome="uredi">
+								<f:param name="id" value="#{pregledtreninga.izbranTrening.id}" />
+							</h:link>
 						</td>
 					</tr>
 				</table>

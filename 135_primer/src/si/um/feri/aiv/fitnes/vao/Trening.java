@@ -1,15 +1,19 @@
 package si.um.feri.aiv.fitnes.vao;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Trening {
+public class Trening implements Serializable {
 	
+	private static final long serialVersionUID = -5585652009484553266L;
+
 	private long id;
 	
 	private String naziv;
@@ -21,9 +25,9 @@ public class Trening {
 	private String stranka;
 	
 	private int dniVCiklu;
-
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public long getId() {
 		return id;
 	}

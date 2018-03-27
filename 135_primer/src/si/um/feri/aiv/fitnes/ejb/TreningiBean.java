@@ -35,4 +35,9 @@ public class TreningiBean {
 		em.persist(t);
 	}
 	
+	public void merge(Trening t) {
+		log.info("Shranjujem (merge)"+t);
+		em.merge(t);
+	}
+	
 }

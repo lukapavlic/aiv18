@@ -10,7 +10,7 @@
 			<f:view>
 			
 				<f:metadata>
-					<f:viewParam name="nov" value="#{treningi.nov}" />
+					<f:viewParam name="id" value="#{urejanjetreninga.izbranTreningId}" />
 				</f:metadata>
 			
 				<h:form>
@@ -18,27 +18,27 @@
 					<table border="0">
 						<tr>
 							<td>Id:</td>
-							<td><h:outputText value="#{treningi.izbranTrening.id}"/> | <h:outputText value="#{treningi.izbranTrening.javaReference}"/></td>
+							<td><h:outputText value="#{urejanjetreninga.izbranTrening.id}"/> | <h:outputText value="#{urejanjetreninga.izbranTrening.javaReference}"/></td>
 						</tr>
 						<tr>
 							<td>Naziv:</td>
-							<td><h:inputText value="#{treningi.izbranTrening.naziv}"/></td>
+							<td><h:inputText value="#{urejanjetreninga.izbranTrening.naziv}"/></td>
 						</tr>
 						<tr>
 							<td>Stranka:</td>
-							<td><h:inputText value="#{treningi.izbranTrening.stranka}"/></td>
+							<td><h:inputText value="#{urejanjetreninga.izbranTrening.stranka}"/></td>
 						</tr>
 						<tr>
 							<td>Trener:</td>
-							<td><h:inputText value="#{treningi.izbranTrening.trener}"/></td>
+							<td><h:inputText value="#{urejanjetreninga.izbranTrening.trener}"/></td>
 						</tr>
 						<tr>
 							<td>Dni v ciklu:</td>
-							<td><h:inputText value="#{treningi.izbranTrening.dniVCiklu}"/></td>
+							<td><h:inputText value="#{urejanjetreninga.izbranTrening.dniVCiklu}"/></td>
 						</tr>
 						<tr>
-							<td rowspan="2"><h:commandButton value="V redu" actionListener="#{treningi.shraniIzbranTrening}" action="vse.xhtml"/></td>
-							<td rowspan="2"><h:commandButton value="Prekliči" action="vse.xhtml"/></td>
+							<td rowspan="2"><h:commandButton value="V redu" actionListener="#{urejanjetreninga.shrani(urejanjetreninga.izbranTrening.id)}" action="vse.xhtml"/></td>
+							<td rowspan="2"><h:commandButton value="Prekliči" actionListener="#{urejanjetreninga.preklici}" action="vse.xhtml"/></td>
 						</tr>
 					</table>
 					 
