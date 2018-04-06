@@ -45,7 +45,6 @@ public class PrejemnikVrstaNonBlocking {
 //		session.close();
 //		cnn.stop();
 //		cnn.close();
-		
 
 	}
 
