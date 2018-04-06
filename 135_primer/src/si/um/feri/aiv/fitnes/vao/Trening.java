@@ -4,12 +4,17 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
+@Table(name="TREN")
 public class Trening implements Serializable {
 	
 	private static final long serialVersionUID = -5585652009484553266L;
@@ -28,6 +33,7 @@ public class Trening implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="KLJUC")
 	public long getId() {
 		return id;
 	}
@@ -79,6 +85,7 @@ public class Trening implements Serializable {
 	public void setJavaReference(String s) {
 	}
 
+	@Transient
 	public String getJavaReference() {
 		return super.toString();
 	}
